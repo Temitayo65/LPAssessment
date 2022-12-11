@@ -10,7 +10,6 @@ import UIKit
 class MainViewController: UIViewController{
     
     private var searchQuery: String = ""
-    
     private let searchTextField: UITextField = {
         let textField = UITextField(frame: .zero)
         textField.translatesAutoresizingMaskIntoConstraints = false
@@ -94,8 +93,6 @@ class MainViewController: UIViewController{
 
 
 extension MainViewController: UITextFieldDelegate{
-
-
     func textFieldShouldEndEditing(_ textField: UITextField) -> Bool {
         if let inputValue = textField.text{
             searchQuery = inputValue
@@ -117,7 +114,7 @@ extension MainViewController: UITextFieldDelegate{
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        APICaller.shared.resetPageCount()
+        APICaller.shared.resetPageCount() // reset the pageCount by the APICaller singleton
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillChange(notification:)), name: UIResponder.keyboardWillChangeFrameNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
     }
@@ -135,7 +132,6 @@ extension MainViewController: UITextFieldDelegate{
     }
 
     @objc func keyboardWillChange(notification: NSNotification) {
-
         if let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue {
             if searchTextField.isFirstResponder {
                 self.view.frame.origin.y = -keyboardSize.height + searchTextField.frame.size.height + searchButton.frame.size.height

@@ -21,7 +21,6 @@ class APICaller{
         
         if pagination{
             self.isPaginating = true
-            
         }
         
         let query = queryString.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed) ?? self.slice(queryString, from: 0, to: " ")!
@@ -56,12 +55,12 @@ class APICaller{
         else{
             isPaginating = false
         }
-        print("Current page", pageCount)
+//        print("Current page", pageCount)
     }
     
     public func resetPageCount(){
         pageCount = 1
-        print("Resetting page count to", pageCount)
+//        print("Resetting page count to", pageCount)
     }
 
 }

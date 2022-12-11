@@ -72,9 +72,8 @@ extension ResultsViewController: UITableViewDelegate, UITableViewDataSource, UIS
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: ResultsTableViewCell.identifier, for: indexPath) as? ResultsTableViewCell else{return UITableViewCell()}
-        let imageURL = tableViewResults[indexPath.row].avatar_url
-        let username = tableViewResults[indexPath.row].login
-        cell.configureCell(with: ResponseModel(imageURL: imageURL, username: username))
+        let model = tableViewResults[indexPath.row]
+        cell.configureCell(with: model)
         cell.backgroundColor = .clear
         return cell
     }

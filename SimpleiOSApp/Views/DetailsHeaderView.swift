@@ -66,7 +66,6 @@ class DetailsHeaderView: UIView {
             detailsAvatarImageView.centerXAnchor.constraint(equalTo: centerXAnchor)
         ]
 
-
         let userLabelConstraints = [
             userLabel.topAnchor.constraint(equalTo: detailsAvatarImageView.bottomAnchor, constant: 10),
             userLabel.centerXAnchor.constraint(equalTo: detailsAvatarImageView.centerXAnchor),

@@ -68,9 +68,9 @@ class ResultsTableViewCell: UITableViewCell {
         
     }
     
-    public func configureCell(with model: ResponseModel){
-        userLabel.text = model.username
-        guard let url = URL(string: model.imageURL) else{return}
+    public func configureCell(with model: Items){
+        userLabel.text = model.login
+        guard let url = URL(string: model.avatar_url) else{return}
         avatarImage.sd_setImage(with:url, completed: nil)
         
         

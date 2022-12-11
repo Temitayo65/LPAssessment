@@ -35,6 +35,10 @@ class DetailsViewController: UIViewController {
         configureHeaderView()
     }
     
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        navigationController?.navigationBar.prefersLargeTitles = true
+    }
     
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
