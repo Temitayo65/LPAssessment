@@ -15,7 +15,7 @@ class DetailsTableViewCell: UITableViewCell {
         let label = UILabel(frame: .zero)
         label.font = UIFont.systemFont(ofSize: 13)
         label.numberOfLines = 0
-        label.textColor = .white
+        label.textColor = .black
         label.textAlignment = .center
         label.translatesAutoresizingMaskIntoConstraints = false
         return label

@@ -11,10 +11,10 @@
 		841F7FC92943E8C400B4BE4B /* DetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 841F7FC82943E8C400B4BE4B /* DetailsViewController.swift */; };
 		841F7FCF2943F60600B4BE4B /* APICallerExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 841F7FCE2943F60600B4BE4B /* APICallerExt.swift */; };
 		841F7FD329442AFE00B4BE4B /* ResultsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 841F7FD229442AFE00B4BE4B /* ResultsTableViewCell.swift */; };
-		841F7FD8294430E600B4BE4B /* SDWebImage in Frameworks */ = {isa = PBXBuildFile; productRef = 841F7FD7294430E600B4BE4B /* SDWebImage */; };
-		841F7FDA294430E600B4BE4B /* SDWebImageMapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 841F7FD9294430E600B4BE4B /* SDWebImageMapKit */; };
 		841F7FDE2945637000B4BE4B /* DetailsHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 841F7FDD2945637000B4BE4B /* DetailsHeaderView.swift */; };
 		841F7FE02945690700B4BE4B /* DetailsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 841F7FDF2945690700B4BE4B /* DetailsTableViewCell.swift */; };
+		845EDFB52946024600454D99 /* SimpleiOSAppTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 845EDFB42946024600454D99 /* SimpleiOSAppTests.swift */; };
+		845EDFBC294602CE00454D99 /* APICallerTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 845EDFBB294602CE00454D99 /* APICallerTest.swift */; };
 		84DBD61E2942960800AB1229 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84DBD61D2942960800AB1229 /* AppDelegate.swift */; };
 		84DBD6202942960800AB1229 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84DBD61F2942960800AB1229 /* SceneDelegate.swift */; };
 		84DBD6222942960800AB1229 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84DBD6212942960800AB1229 /* MainViewController.swift */; };
@@ -27,6 +27,16 @@
 		84DBD64929434C2300AB1229 /* UIViewControllerExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84DBD64829434C2300AB1229 /* UIViewControllerExt.swift */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		845EDFB62946024600454D99 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 84DBD6122942960800AB1229 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 84DBD6192942960800AB1229;
+			remoteInfo = SimpleiOSApp;
+		};
+/* End PBXContainerItemProxy section */
+
 /* Begin PBXFileReference section */
 		841F7FC62943E8B600B4BE4B /* ResultsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultsViewController.swift; sourceTree = "<group>"; };
 		841F7FC82943E8C400B4BE4B /* DetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsViewController.swift; sourceTree = "<group>"; };
@@ -34,6 +44,9 @@
 		841F7FD229442AFE00B4BE4B /* ResultsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultsTableViewCell.swift; sourceTree = "<group>"; };
 		841F7FDD2945637000B4BE4B /* DetailsHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsHeaderView.swift; sourceTree = "<group>"; };
 		841F7FDF2945690700B4BE4B /* DetailsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsTableViewCell.swift; sourceTree = "<group>"; };
+		845EDFB22946024600454D99 /* SimpleiOSAppTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SimpleiOSAppTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		845EDFB42946024600454D99 /* SimpleiOSAppTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimpleiOSAppTests.swift; sourceTree = "<group>"; };
+		845EDFBB294602CE00454D99 /* APICallerTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APICallerTest.swift; sourceTree = "<group>"; };
 		84DBD61A2942960800AB1229 /* SimpleiOSApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SimpleiOSApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		84DBD61D2942960800AB1229 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		84DBD61F2942960800AB1229 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -49,23 +62,46 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		845EDFAF2946024600454D99 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		84DBD6172942960800AB1229 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				841F7FDA294430E600B4BE4B /* SDWebImageMapKit in Frameworks */,
-				841F7FD8294430E600B4BE4B /* SDWebImage in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		845EDFB32946024600454D99 /* SimpleiOSAppTests */ = {
+			isa = PBXGroup;
+			children = (
+				845EDFB42946024600454D99 /* SimpleiOSAppTests.swift */,
+				845EDFBB294602CE00454D99 /* APICallerTest.swift */,
+			);
+			path = SimpleiOSAppTests;
+			sourceTree = "<group>";
+		};
+		845EDFBE2946148300454D99 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		84DBD6112942960800AB1229 = {
 			isa = PBXGroup;
 			children = (
 				84DBD61C2942960800AB1229 /* SimpleiOSApp */,
+				845EDFB32946024600454D99 /* SimpleiOSAppTests */,
 				84DBD61B2942960800AB1229 /* Products */,
+				845EDFBE2946148300454D99 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -73,6 +109,7 @@
 			isa = PBXGroup;
 			children = (
 				84DBD61A2942960800AB1229 /* SimpleiOSApp.app */,
+				845EDFB22946024600454D99 /* SimpleiOSAppTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -152,6 +189,24 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		845EDFB12946024600454D99 /* SimpleiOSAppTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 845EDFB82946024600454D99 /* Build configuration list for PBXNativeTarget "SimpleiOSAppTests" */;
+			buildPhases = (
+				845EDFAE2946024600454D99 /* Sources */,
+				845EDFAF2946024600454D99 /* Frameworks */,
+				845EDFB02946024600454D99 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				845EDFB72946024600454D99 /* PBXTargetDependency */,
+			);
+			name = SimpleiOSAppTests;
+			productName = SimpleiOSAppTests;
+			productReference = 845EDFB22946024600454D99 /* SimpleiOSAppTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 		84DBD6192942960800AB1229 /* SimpleiOSApp */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 84DBD6312942960A00AB1229 /* Build configuration list for PBXNativeTarget "SimpleiOSApp" */;
@@ -166,8 +221,6 @@
 			);
 			name = SimpleiOSApp;
 			packageProductDependencies = (
-				841F7FD7294430E600B4BE4B /* SDWebImage */,
-				841F7FD9294430E600B4BE4B /* SDWebImageMapKit */,
 			);
 			productName = SimpleiOSApp;
 			productReference = 84DBD61A2942960800AB1229 /* SimpleiOSApp.app */;
@@ -183,6 +236,10 @@
 				LastSwiftUpdateCheck = 1410;
 				LastUpgradeCheck = 1410;
 				TargetAttributes = {
+					845EDFB12946024600454D99 = {
+						CreatedOnToolsVersion = 14.1;
+						TestTargetID = 84DBD6192942960800AB1229;
+					};
 					84DBD6192942960800AB1229 = {
 						CreatedOnToolsVersion = 14.1;
 					};
@@ -205,11 +262,19 @@
 			projectRoot = "";
 			targets = (
 				84DBD6192942960800AB1229 /* SimpleiOSApp */,
+				845EDFB12946024600454D99 /* SimpleiOSAppTests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		845EDFB02946024600454D99 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		84DBD6182942960800AB1229 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -222,6 +287,15 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		845EDFAE2946024600454D99 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				845EDFB52946024600454D99 /* SimpleiOSAppTests.swift in Sources */,
+				845EDFBC294602CE00454D99 /* APICallerTest.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		84DBD6162942960800AB1229 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -245,6 +319,14 @@
 		};
 /* End PBXSourcesBuildPhase section */
 
+/* Begin PBXTargetDependency section */
+		845EDFB72946024600454D99 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 84DBD6192942960800AB1229 /* SimpleiOSApp */;
+			targetProxy = 845EDFB62946024600454D99 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
 /* Begin PBXVariantGroup section */
 		84DBD62B2942960A00AB1229 /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
@@ -257,6 +339,42 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		845EDFB92946024600454D99 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 2D8LVDKBG6;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.sgbc.SimpleiOSAppTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/SimpleiOSApp.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/SimpleiOSApp";
+			};
+			name = Debug;
+		};
+		845EDFBA2946024600454D99 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 2D8LVDKBG6;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.sgbc.SimpleiOSAppTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/SimpleiOSApp.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/SimpleiOSApp";
+			};
+			name = Release;
+		};
 		84DBD62F2942960A00AB1229 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -384,7 +502,8 @@
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft";
+				INFOPLIST_KEY_UIUserInterfaceStyle = Light;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -411,7 +530,8 @@
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft";
+				INFOPLIST_KEY_UIUserInterfaceStyle = Light;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -428,6 +548,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		845EDFB82946024600454D99 /* Build configuration list for PBXNativeTarget "SimpleiOSAppTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				845EDFB92946024600454D99 /* Debug */,
+				845EDFBA2946024600454D99 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		84DBD6152942960800AB1229 /* Build configuration list for PBXProject "SimpleiOSApp" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
@@ -458,19 +587,6 @@
 			};
 		};
 /* End XCRemoteSwiftPackageReference section */
-
-/* Begin XCSwiftPackageProductDependency section */
-		841F7FD7294430E600B4BE4B /* SDWebImage */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 841F7FD6294430E600B4BE4B /* XCRemoteSwiftPackageReference "SDWebImage" */;
-			productName = SDWebImage;
-		};
-		841F7FD9294430E600B4BE4B /* SDWebImageMapKit */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 841F7FD6294430E600B4BE4B /* XCRemoteSwiftPackageReference "SDWebImage" */;
-			productName = SDWebImageMapKit;
-		};
-/* End XCSwiftPackageProductDependency section */
 
 /* Begin XCVersionGroup section */
 		84DBD6262942960900AB1229 /* SimpleiOSApp.xcdatamodeld */ = {

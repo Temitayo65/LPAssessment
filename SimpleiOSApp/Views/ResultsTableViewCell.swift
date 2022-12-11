@@ -6,14 +6,13 @@
 //
 
 import UIKit
-import SDWebImage
 
-class ResultsTableViewCell: UITableViewCell {  
-
+class ResultsTableViewCell: UITableViewCell {
+    
     static let identifier = "ResultsTableViewCell"
     private let userLabel: UILabel = {
         let label = UILabel()
-        label.textColor = .white
+        label.textColor = .black
         label.font = UIFont.systemFont(ofSize: 13)
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
@@ -71,7 +70,7 @@ class ResultsTableViewCell: UITableViewCell {
     public func configureCell(with model: Items){
         userLabel.text = model.login
         guard let url = URL(string: model.avatar_url) else{return}
-        avatarImage.sd_setImage(with:url, completed: nil)
+        avatarImage.load(url: url)
         
         
         

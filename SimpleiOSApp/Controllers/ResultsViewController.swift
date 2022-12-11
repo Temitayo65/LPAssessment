@@ -9,6 +9,7 @@ import UIKit
 
 class ResultsViewController: UIViewController {
    
+    private var apiCaller = APICaller()
     var searchResult: SearchResults?
     var searchQuery: String!
     
@@ -17,7 +18,7 @@ class ResultsViewController: UIViewController {
     private let resultsTableView: UITableView = {
         let table = UITableView(frame: .zero, style: .grouped)
         table.translatesAutoresizingMaskIntoConstraints = false
-        table.backgroundColor = .black
+        table.backgroundColor = .white
         table.register(ResultsTableViewCell.self, forCellReuseIdentifier: ResultsTableViewCell.identifier)
         return table
     }()
@@ -30,14 +31,14 @@ class ResultsViewController: UIViewController {
         navigationController?.navigationBar.prefersLargeTitles = true
         navigationController?.navigationItem.largeTitleDisplayMode = .always
         
-        view.backgroundColor = .black
+        view.backgroundColor = .white
         view.addSubview(resultsTableView)
         
         resultsTableView.dataSource = self
         resultsTableView.delegate = self
         
         tableViewResults.append(contentsOf: searchResult!.items)
-        tableViewResults.sort{$0.login.lowercased() < $1.login.lowercased()}
+        respondToSearchResult()
 
     }
     
@@ -60,6 +61,20 @@ class ResultsViewController: UIViewController {
         NSLayoutConstraint.activate(resultsTableViewConstraints)
     }
     
+    
+    private func respondToSearchResult(){
+        if tableViewResults.isEmpty{
+            let alertController = UIAlertController(title: "No Search Results", message: "Try Again!", preferredStyle: .alert)
+            let alertAction = UIAlertAction(title: "Ok", style: .cancel){[weak self] _ in
+                self?.navigationController?.popViewController(animated: true)
+            }
+            alertController.addAction(alertAction)
+            present(alertController, animated: true)
+        }
+        else{
+            tableViewResults.sort{$0.login.lowercased() < $1.login.lowercased()}
+        }
+    }
    
 }
 
@@ -74,7 +89,7 @@ extension ResultsViewController: UITableViewDelegate, UITableViewDataSource, UIS
         guard let cell = tableView.dequeueReusableCell(withIdentifier: ResultsTableViewCell.identifier, for: indexPath) as? ResultsTableViewCell else{return UITableViewCell()}
         let model = tableViewResults[indexPath.row]
         cell.configureCell(with: model)
-        cell.backgroundColor = .clear
+        cell.backgroundColor = .white
         return cell
     }
     
@@ -103,10 +118,10 @@ extension ResultsViewController: UITableViewDelegate, UITableViewDataSource, UIS
         let position = scrollView.contentOffset.y - 100
         if position > (resultsTableView.contentSize.height-scrollView.frame.size.height) {
             
-            guard !APICaller.shared.isPaginating else {return}
+            guard !apiCaller.isPaginating else {return}
             self.resultsTableView.tableFooterView = createSpinenrFooter()
             
-            APICaller.shared.getSearchResults(pagination: true,for: searchQuery){[weak self] results in
+            apiCaller.getSearchResults(pagination: true,for: searchQuery){[weak self] results in
                 DispatchQueue.main.async {
                     self?.resultsTableView.tableFooterView = nil
                 }

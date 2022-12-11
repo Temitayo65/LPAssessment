@@ -9,12 +9,19 @@ import UIKit
 
 class MainViewController: UIViewController{
     
+    private let apiCaller = APICaller()
+    
+    
     private var searchQuery: String = ""
     private let searchTextField: UITextField = {
         let textField = UITextField(frame: .zero)
+        textField.textColor = .white
         textField.translatesAutoresizingMaskIntoConstraints = false
-        textField.placeholder = "Type your Search Query"
         textField.textAlignment = .center
+        textField.attributedPlaceholder = NSAttributedString(
+            string: "Type your Search Query",
+            attributes: [NSAttributedString.Key.foregroundColor: UIColor.gray]
+        )
         textField.layer.borderWidth = 3
         textField.layer.borderColor = UIColor.white.cgColor
         textField.layer.cornerRadius = 10
@@ -28,81 +35,106 @@ class MainViewController: UIViewController{
         button.tintColor = .purple
         button.backgroundColor = .cyan
         button.layer.cornerRadius = 10
+        button.addTarget(nil, action: #selector(titleForButtonTapped), for: .touchUpInside)
         return button
     }()
+    
+    @objc func titleForButtonTapped(){
+        searchButtonTapped(for: searchQuery)
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
-        view.backgroundColor = .systemFill
+        view.backgroundColor = .darkGray
         view.addSubview(searchTextField)
         view.addSubview(searchButton)
         
-        hideKeyboardWhenTappedAround()
+        
+        
         searchTextField.delegate = self
+        searchTextField.clearButtonMode = .always
+        searchTextField.clearButtonMode = .whileEditing
+        
+        hideKeyboardWhenTappedAround()
+        
+        
     }
     
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
-        applyConstraints()
+        applyConstraintsForSubviews()
     }
 
     
-    private func applyConstraints(){
+    private func applyConstraintsForSubviews(){
         let searchTextFieldConstraints: [NSLayoutConstraint] = [
-            searchTextField.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            searchTextField.centerYAnchor.constraint(equalTo: view.centerYAnchor),
+            searchTextField.topAnchor.constraint(equalTo: view.topAnchor, constant: 100),
             searchTextField.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
-            searchTextField.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
+            searchTextField.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -80),
             searchTextField.heightAnchor.constraint(equalToConstant: 80)
         ]
         NSLayoutConstraint.activate(searchTextFieldConstraints)
         
         let searchButtonConstraints: [NSLayoutConstraint] = [
-            searchButton.centerXAnchor.constraint(equalTo: searchTextField.centerXAnchor),
+            searchButton.centerYAnchor.constraint(equalTo: searchTextField.centerYAnchor),
             searchButton.widthAnchor.constraint(equalToConstant: 50),
             searchButton.heightAnchor.constraint(equalToConstant: 50),
-            searchButton.topAnchor.constraint(equalTo: searchTextField.bottomAnchor, constant: 20)
+            searchButton.leadingAnchor.constraint(equalTo: searchTextField.trailingAnchor, constant: 3)
         ]
         NSLayoutConstraint.activate(searchButtonConstraints)
     }
     
+    
+    
     func searchButtonTapped(for searchQuery: String){
-             APICaller.shared.getSearchResults(for: searchQuery){[weak self] results in
-                 switch results{
-                 case .success(let result):
-                     DispatchQueue.main.async {
-                         let vc = ResultsViewController()
-                         vc.searchResult = result
-                         vc.searchQuery = searchQuery
-                         self?.navigationController?.pushViewController(vc, animated: true)
-                     }
-                     
-                 case .failure:
-                     DispatchQueue.main.async {
-                         let alertController = UIAlertController(title: "Search Input Required", message: "Type a search input for your search", preferredStyle: .alert)
-                         let alerAction = UIAlertAction(title: "Ok", style: .cancel)
-                         alertController.addAction(alerAction)
-                         self?.present(alertController, animated: true)
-                     }
-                     
-                 }
-             }
-     }
+        if !searchQuery.isEmpty{
+            apiCaller.getSearchResults(for: searchQuery){[weak self] results in
+                switch results{
+                case .success(let result):
+                    DispatchQueue.main.async {
+                        let vc = ResultsViewController()
+                        vc.searchResult = result
+                        vc.searchQuery = searchQuery
+                        self?.navigationController?.pushViewController(vc, animated: true)
+                    }
+                case .failure(let error):
+                    DispatchQueue.main.async {
+                        let alertController = UIAlertController(title: "Invalid Request", message: "Check your internet connection\n\(error.localizedDescription)", preferredStyle: .alert)
+                        let alertAction = UIAlertAction(title: "Ok", style: .cancel)
+                        alertController.addAction(alertAction)
+                        self?.present(alertController, animated: true)
+                    }
+                    
+                }
+            }
+        }
+        
+        else {
+            let alertController = UIAlertController(title: "Search Input Required", message: "Type a search input for your search", preferredStyle: .alert)
+            let alertAction = UIAlertAction(title: "Ok", style: .cancel)
+            alertController.addAction(alertAction)
+            self.present(alertController, animated: true)
+        }
+    }
 }
 
 
 extension MainViewController: UITextFieldDelegate{
+    func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
+        return true
+    }
+    
     func textFieldShouldEndEditing(_ textField: UITextField) -> Bool {
         if let inputValue = textField.text{
             searchQuery = inputValue
-            searchButtonTapped(for: searchQuery)
             textField.resignFirstResponder()
             return true
         }
         return false
         
     }
+
 
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
         if range.location > 40{ // limiting search query to 40 characters
@@ -111,32 +143,16 @@ extension MainViewController: UITextFieldDelegate{
         return true
     }
     
+    func textFieldShouldClear(_ textField: UITextField) -> Bool {
+        searchQuery = ""
+        textField.resignFirstResponder()
+        return true
+    }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        APICaller.shared.resetPageCount() // reset the pageCount by the APICaller singleton
-        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillChange(notification:)), name: UIResponder.keyboardWillChangeFrameNotification, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
-    }
-
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
-
-        NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillChangeFrameNotification, object: nil)
-        NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillHideNotification, object: nil)
-    }
-
-
-    @objc func keyboardWillHide() {
-        self.view.frame.origin.y = 0
-    }
-
-    @objc func keyboardWillChange(notification: NSNotification) {
-        if let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue {
-            if searchTextField.isFirstResponder {
-                self.view.frame.origin.y = -keyboardSize.height + searchTextField.frame.size.height + searchButton.frame.size.height
-            }
-        }
+        apiCaller.resetPageCount() // reset the pageCount by the APICaller
+      
     }
 
     

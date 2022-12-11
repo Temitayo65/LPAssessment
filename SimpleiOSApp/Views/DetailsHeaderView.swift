@@ -21,7 +21,7 @@ class DetailsHeaderView: UIView {
     
     private let userLabel: UILabel = {
         let label = UILabel()
-        label.textColor = .white
+        label.textColor = .black
         label.font = UIFont.systemFont(ofSize: 13)
         label.numberOfLines = 0
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -49,7 +49,7 @@ class DetailsHeaderView: UIView {
     
     public func configure(with model: Items){
         guard let url = URL(string: model.avatar_url) else{return }
-        detailsAvatarImageView.sd_setImage(with: url, completed: nil)
+        detailsAvatarImageView.load(url: url)
         userLabel.text = model.login
         userLabel.textAlignment = .center
         

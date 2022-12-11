@@ -15,13 +15,9 @@ class APICaller{
     private var pageCount = 1
     
     var isPaginating = false
-    static let shared = APICaller()
     
     func getSearchResults(pagination: Bool = false, for queryString: String, completion: @escaping (Result<SearchResults,(Error)>) -> Void){
-        
-        if pagination{
-            self.isPaginating = true
-        }
+        if pagination{self.isPaginating = true}
         
         let query = queryString.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed) ?? self.slice(queryString, from: 0, to: " ")!
             
@@ -34,19 +30,15 @@ class APICaller{
                     let result = try JSONDecoder().decode(SearchResults.self, from: data)
                     completion(.success(result))
                     self.increasePageCount(for: result.total_count)
-                    print(result.total_count)
-                    print(result.items.count)
-                    if pagination{
-                        self.isPaginating = false
-                    }
-                }catch{
-                    completion(.failure(APIError.failedToGetData))
+                
+                    if pagination{self.isPaginating = false}
                     
-                }
+                }catch{completion(.failure(APIError.failedToGetData))}
             }
             task.resume()
       
     }
+    
     
     private func increasePageCount(for pageTotal: Int){
         if pageCount < pageTotal{
