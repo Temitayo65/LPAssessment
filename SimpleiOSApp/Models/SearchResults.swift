@@ -34,5 +34,4 @@ struct Items: Codable{
     let site_admin: Bool
     let score: Float
     
-    
 }
