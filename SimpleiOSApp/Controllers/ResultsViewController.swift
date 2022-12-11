@@ -11,9 +11,7 @@ class ResultsViewController: UIViewController {
    
     var searchResult: SearchResults?
     var searchQuery: String!
-    var subtractionValue: Int = 20
     
-    var allResults = [Items]()
     var tableViewResults: [Items] = [Items]()
     
     private let resultsTableView: UITableView = {
@@ -38,8 +36,7 @@ class ResultsViewController: UIViewController {
         resultsTableView.dataSource = self
         resultsTableView.delegate = self
         
-        allResults.append(contentsOf: searchResult!.items)
-        tableViewResults.append(contentsOf: (Array(allResults.prefix(10))))
+        tableViewResults.append(contentsOf: searchResult!.items)
         tableViewResults.sort{$0.login.lowercased() < $1.login.lowercased()}
 
     }
@@ -88,6 +85,9 @@ extension ResultsViewController: UITableViewDelegate, UITableViewDataSource, UIS
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
+        let vc = DetailsViewController()
+        vc.detailItems = tableViewResults[indexPath.row]
+        navigationController?.pushViewController(vc, animated: true)
     }
     
     private func createSpinenrFooter() -> UIView {
@@ -116,17 +116,12 @@ extension ResultsViewController: UITableViewDelegate, UITableViewDataSource, UIS
                     DispatchQueue.main.async {
                         var arrayItems = data.items // array items after call
                         arrayItems.sort{$0.login.lowercased() < $1.login.lowercased()} // sort them here
-                        self?.allResults.append(contentsOf: arrayItems) // increase the result
-                        self?.subtractionValue += 20
-                        
-                        let subArrayResult = self?.allResults.dropLast(self!.subtractionValue)
-                        let arrayConversionResult: [Items] = (subArrayResult?.map({ item in item}))! // changing item.subarray to array of item
-                        self?.tableViewResults = arrayConversionResult
+                        self?.tableViewResults.append(contentsOf: arrayItems) // increase the result
                         self?.resultsTableView.reloadData()
                     }
                     
                 case.failure(_):
-                    break
+                    break // handle this later
                     
                     
                 }
