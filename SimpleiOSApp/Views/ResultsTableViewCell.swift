@@ -24,6 +24,7 @@ class ResultsTableViewCell: UITableViewCell {
         let image = UIImageView()
         image.translatesAutoresizingMaskIntoConstraints = false
         image.contentMode = .scaleAspectFill
+        image.clipsToBounds = true
         image.layer.cornerRadius = 20
         return image
     }()
@@ -71,7 +72,7 @@ class ResultsTableViewCell: UITableViewCell {
         userLabel.text = model.username
         guard let url = URL(string: model.imageURL) else{return}
         avatarImage.sd_setImage(with:url, completed: nil)
-        avatarImage.clipsToBounds = true
+        
         
         
     }
