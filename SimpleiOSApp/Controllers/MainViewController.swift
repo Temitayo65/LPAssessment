@@ -141,7 +141,6 @@ extension MainViewController: UITextFieldDelegate{
     
     func textFieldShouldClear(_ textField: UITextField) -> Bool {
         searchQuery = ""
-        // textField.resignFirstResponder()
         return true
     }
     

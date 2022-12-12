@@ -129,7 +129,7 @@ extension ResultsViewController: UITableViewDelegate, UITableViewDataSource, UIS
                 switch results{
                 case .success(let data):
                     DispatchQueue.main.async {
-                        var arrayItems = data.items // array items after call - api sends the descending sort order from the APICall
+                        let arrayItems = data.items // array items after call - api sends the descending sort order from the APICall
                         //arrayItems.sort{$0.login.lowercased() < $1.login.lowercased()} // sort them here in ascending order
                         if self?.tableViewResults != arrayItems{
                             self?.tableViewResults.append(contentsOf: arrayItems)
