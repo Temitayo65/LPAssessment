@@ -68,16 +68,16 @@ class MainViewController: UIViewController{
         let searchTextFieldConstraints: [NSLayoutConstraint] = [
             searchTextField.topAnchor.constraint(equalTo: view.topAnchor, constant: 100),
             searchTextField.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
-            searchTextField.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -80),
-            searchTextField.heightAnchor.constraint(equalToConstant: 80)
+            searchTextField.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
+            searchTextField.heightAnchor.constraint(equalToConstant: 150)
         ]
         NSLayoutConstraint.activate(searchTextFieldConstraints)
         
         let searchButtonConstraints: [NSLayoutConstraint] = [
-            searchButton.centerYAnchor.constraint(equalTo: searchTextField.centerYAnchor),
+            searchButton.topAnchor.constraint(equalTo: searchTextField.bottomAnchor, constant: 10),
             searchButton.widthAnchor.constraint(equalToConstant: 50),
             searchButton.heightAnchor.constraint(equalToConstant: 50),
-            searchButton.leadingAnchor.constraint(equalTo: searchTextField.trailingAnchor, constant: 3)
+            searchButton.centerXAnchor.constraint(equalTo: searchTextField.centerXAnchor)
         ]
         NSLayoutConstraint.activate(searchButtonConstraints)
     }
@@ -117,10 +117,6 @@ class MainViewController: UIViewController{
 
 
 extension MainViewController: UITextFieldDelegate{
-    func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
-        return true
-    }
-    
     func textFieldShouldEndEditing(_ textField: UITextField) -> Bool {
         if let inputValue = textField.text{
             searchQuery = inputValue
@@ -140,7 +136,6 @@ extension MainViewController: UITextFieldDelegate{
     
     func textFieldShouldClear(_ textField: UITextField) -> Bool {
         searchQuery = ""
-        searchButtonTapped(for: searchQuery)
         return true
     }
     
@@ -149,7 +144,11 @@ extension MainViewController: UITextFieldDelegate{
             searchButtonTapped(for: query)
             return true
         }
-        return false
+        else{
+            textField.text = ""
+            return false
+        }
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
