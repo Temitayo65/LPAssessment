@@ -29,6 +29,19 @@ final class SimpleiOSAppTests: XCTestCase {
         // Mark your test throws to produce an unexpected failure when your test encounters an uncaught error.
         // Mark your test async to allow awaiting for asynchronous code to complete. Check the results with assertions afterwards.
     }
+    
+    func testAPICaller(){
+        let apiCaller = APICaller() // on initialization the page count should be 1
+        XCTAssertEqual(apiCaller.getPageCount(), 1, "The page count should be 1 on initialization")
+        
+        // To check that the page count is reset to 1 when this is called
+        apiCaller.resetPageCount()
+        XCTAssertTrue(apiCaller.getPageCount() == 1, "This value should always be 1 when the resetPageCount() has been called. Check the body of the function and set page count back to 1")
+        
+       
+        
+    }
+    
 
     func testPerformanceExample() throws {
         // This is an example of a performance test case.

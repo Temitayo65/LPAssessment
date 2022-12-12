@@ -15,7 +15,6 @@ class DetailsHeaderView: UIView {
         imageView.contentMode = .scaleAspectFill
         imageView.clipsToBounds = true
         imageView.layer.cornerRadius = 50
-        
         return imageView
     }()
     
@@ -26,7 +25,6 @@ class DetailsHeaderView: UIView {
         label.numberOfLines = 0
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
-        
     }()
 
     // initializer for this view The frame is set from when it is initialized in a view controller
@@ -44,7 +42,6 @@ class DetailsHeaderView: UIView {
     required init?(coder: NSCoder) {
         fatalError()
     }
-    
 
     
     public func configure(with model: Items){
@@ -54,9 +51,7 @@ class DetailsHeaderView: UIView {
         userLabel.textAlignment = .center
         
     }
-    
-    
-    
+
     private func applyConstraints(){
         
         let detailsAvatarImageViewConstraints = [

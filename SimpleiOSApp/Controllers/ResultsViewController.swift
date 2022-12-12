@@ -10,12 +10,10 @@ import UIKit
 class ResultsViewController: UIViewController {
    
     private var apiCaller = APICaller()
-    var searchResult: SearchResults?
+    var searchResult: SearchResults!
     var searchQuery: String!
     var imageCache = NSCache<NSURL, UIImage>()
 
-    
-    
     var tableViewResults: [Items] = [Items]()
     
     private let resultsTableView: UITableView = {
@@ -40,7 +38,7 @@ class ResultsViewController: UIViewController {
         resultsTableView.dataSource = self
         resultsTableView.delegate = self
         
-        tableViewResults.append(contentsOf: searchResult!.items)
+        tableViewResults.append(contentsOf: searchResult.items)
         respondToSearchResult()
 
     }
@@ -74,9 +72,7 @@ class ResultsViewController: UIViewController {
             alertController.addAction(alertAction)
             present(alertController, animated: true)
         }
-        else{
-            tableViewResults.sort{$0.login.lowercased() < $1.login.lowercased()}
-        }
+
     }
    
 }
@@ -133,9 +129,11 @@ extension ResultsViewController: UITableViewDelegate, UITableViewDataSource, UIS
                 switch results{
                 case .success(let data):
                     DispatchQueue.main.async {
-                        var arrayItems = data.items // array items after call
-                        arrayItems.sort{$0.login.lowercased() < $1.login.lowercased()} // sort them here
-                        self?.tableViewResults.append(contentsOf: arrayItems) // increase the result
+                        var arrayItems = data.items // array items after call - api sends the descending sort order from the APICall
+                        //arrayItems.sort{$0.login.lowercased() < $1.login.lowercased()} // sort them here in ascending order
+                        if self?.tableViewResults != arrayItems{
+                            self?.tableViewResults.append(contentsOf: arrayItems)
+                        } // increase the result if the result is not in the array already
                         self?.resultsTableView.reloadData()
                     }
                     

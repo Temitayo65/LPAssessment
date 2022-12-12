@@ -13,7 +13,7 @@ struct SearchResults: Codable{
     let items: [Items]
 }
 
-struct Items: Codable{
+struct Items: Codable, Equatable{
     let login: String
     let id: Int
     let node_id: String

@@ -43,15 +43,12 @@ class ResultsTableViewCell: UITableViewCell {
         applyConstraints()
     }
     
-    
-    func applyConstraints(){
+    private func applyConstraints(){
         let avatarImageConstraints : [NSLayoutConstraint] = [
             avatarImage.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 10),
             avatarImage.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 10),
             avatarImage.heightAnchor.constraint(equalToConstant: 40),
             avatarImage.widthAnchor.constraint(equalToConstant: 40)
-        
-        
         ]
         
         let userLabelConstraints : [NSLayoutConstraint] = [
@@ -59,7 +56,6 @@ class ResultsTableViewCell: UITableViewCell {
             userLabel.centerYAnchor.constraint(equalTo: avatarImage.centerYAnchor),
             userLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -10),
             userLabel.heightAnchor.constraint(equalToConstant: 25)
-        
         ]
         
         NSLayoutConstraint.activate(avatarImageConstraints)
@@ -68,7 +64,6 @@ class ResultsTableViewCell: UITableViewCell {
     }
     
     public func configureCell(with model: Items, for cache: NSCache<NSURL, UIImage>) -> (NSCache<NSURL, UIImage>) {
-        
         userLabel.text = model.login
         guard let url = URL(string: model.avatar_url) else{return cache}
         // Check if the image is in the cache

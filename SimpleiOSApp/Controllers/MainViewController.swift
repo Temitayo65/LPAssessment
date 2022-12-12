@@ -11,7 +11,6 @@ class MainViewController: UIViewController{
     
     private let apiCaller = APICaller()
     
-    
     private var searchQuery: String = ""
     private let searchTextField: UITextField = {
         let textField = UITextField(frame: .zero)
@@ -49,9 +48,7 @@ class MainViewController: UIViewController{
         view.backgroundColor = .darkGray
         view.addSubview(searchTextField)
         view.addSubview(searchButton)
-        
-        
-        
+
         searchTextField.delegate = self
         searchTextField.clearButtonMode = .always
         searchTextField.clearButtonMode = .whileEditing
@@ -84,8 +81,7 @@ class MainViewController: UIViewController{
         ]
         NSLayoutConstraint.activate(searchButtonConstraints)
     }
-    
-    
+
     
     func searchButtonTapped(for searchQuery: String){
         if !searchQuery.isEmpty{
@@ -145,7 +141,7 @@ extension MainViewController: UITextFieldDelegate{
     
     func textFieldShouldClear(_ textField: UITextField) -> Bool {
         searchQuery = ""
-        textField.resignFirstResponder()
+        // textField.resignFirstResponder()
         return true
     }
     

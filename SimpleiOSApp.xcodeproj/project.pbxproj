@@ -14,7 +14,6 @@
 		841F7FDE2945637000B4BE4B /* DetailsHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 841F7FDD2945637000B4BE4B /* DetailsHeaderView.swift */; };
 		841F7FE02945690700B4BE4B /* DetailsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 841F7FDF2945690700B4BE4B /* DetailsTableViewCell.swift */; };
 		845EDFB52946024600454D99 /* SimpleiOSAppTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 845EDFB42946024600454D99 /* SimpleiOSAppTests.swift */; };
-		845EDFBC294602CE00454D99 /* APICallerTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 845EDFBB294602CE00454D99 /* APICallerTest.swift */; };
 		84DBD61E2942960800AB1229 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84DBD61D2942960800AB1229 /* AppDelegate.swift */; };
 		84DBD6202942960800AB1229 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84DBD61F2942960800AB1229 /* SceneDelegate.swift */; };
 		84DBD6222942960800AB1229 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84DBD6212942960800AB1229 /* MainViewController.swift */; };
@@ -46,7 +45,6 @@
 		841F7FDF2945690700B4BE4B /* DetailsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsTableViewCell.swift; sourceTree = "<group>"; };
 		845EDFB22946024600454D99 /* SimpleiOSAppTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SimpleiOSAppTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		845EDFB42946024600454D99 /* SimpleiOSAppTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimpleiOSAppTests.swift; sourceTree = "<group>"; };
-		845EDFBB294602CE00454D99 /* APICallerTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APICallerTest.swift; sourceTree = "<group>"; };
 		84DBD61A2942960800AB1229 /* SimpleiOSApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SimpleiOSApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		84DBD61D2942960800AB1229 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		84DBD61F2942960800AB1229 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -83,7 +81,6 @@
 			isa = PBXGroup;
 			children = (
 				845EDFB42946024600454D99 /* SimpleiOSAppTests.swift */,
-				845EDFBB294602CE00454D99 /* APICallerTest.swift */,
 			);
 			path = SimpleiOSAppTests;
 			sourceTree = "<group>";
@@ -291,7 +288,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				845EDFB52946024600454D99 /* SimpleiOSAppTests.swift in Sources */,
-				845EDFBC294602CE00454D99 /* APICallerTest.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
