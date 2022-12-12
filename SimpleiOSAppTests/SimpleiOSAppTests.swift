@@ -51,7 +51,11 @@ final class SimpleiOSAppTests: XCTestCase {
             XCTAssertEqual(apiCaller.getPageCount(), 2, "On the first call, the page number should have increased to 2 to enable second page loading for scrollView")
         }
         
+        let query = "hello world"
+        XCTAssertEqual(apiCaller.modifyQuery(with: query), "hello")
         
+        let anotherQuery = "helloworld"
+        XCTAssertEqual(apiCaller.modifyQuery(with: anotherQuery), "helloworld")
 
     }
     

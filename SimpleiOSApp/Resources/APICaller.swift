@@ -17,8 +17,10 @@ class APICaller{
     
     func getSearchResults(pagination: Bool = false, for queryString: String, completion: @escaping (Result<SearchResults,(Error)>) -> Void){
         if pagination{self.isPaginating = true}
+        
+        let query = modifyQuery(with: queryString)
 
-        guard let url = URL(string: "\(Constants.baseURL)/search/users?q=\(queryString)&page=\(self.pageCount)&sort=asc&per_page=10") else{return}
+        guard let url = URL(string: "\(Constants.baseURL)/search/users?q=\(query)&page=\(self.pageCount)&sort=asc&per_page=10") else{return}
             
         let task = URLSession.shared.dataTask(with: URLRequest(url: url)){
                 data,_,error in
@@ -27,14 +29,22 @@ class APICaller{
                     let result = try JSONDecoder().decode(SearchResults.self, from: data)
                     completion(.success(result))
                     self.increasePageCount(for: result.total_count)
-                    print("Page count is:", self.pageCount)
-                
+                    
                     if pagination{self.isPaginating = false}
                     
                 }catch{completion(.failure(APIError.failedToGetData))}
             }
             task.resume()
       
+    }
+    
+    public func modifyQuery(with queryString: String)->String{
+        if queryString.contains(where: { string in
+            string == " "}){
+            let result = slice(queryString, from: 0, to: " ")
+            return result!
+        }
+        return queryString
     }
     
     
