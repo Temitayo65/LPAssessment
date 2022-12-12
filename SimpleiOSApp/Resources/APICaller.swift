@@ -13,7 +13,6 @@ enum APIError: Error{
 class APICaller{
     
     private var pageCount = 1
-    
     var isPaginating = false
     
     func getSearchResults(pagination: Bool = false, for queryString: String, completion: @escaping (Result<SearchResults,(Error)>) -> Void){
