@@ -67,13 +67,27 @@ class ResultsTableViewCell: UITableViewCell {
         
     }
     
-    public func configureCell(with model: Items){
+    public func configureCell(with model: Items, for cache: NSCache<NSURL, UIImage>) -> (NSCache<NSURL, UIImage>) {
+        
         userLabel.text = model.login
-        guard let url = URL(string: model.avatar_url) else{return}
-        avatarImage.load(url: url)
-        
-        
-        
+        guard let url = URL(string: model.avatar_url) else{return cache}
+        // Check if the image is in the cache
+            if let cachedImage = cache.object(forKey: url as NSURL) {
+                // If the image is in the cache, set it on the cell and return
+                avatarImage.image = cachedImage
+            }
+            // If the image is not in the cache, load it from the URL
+            let task = URLSession.shared.dataTask(with: url) { [weak self] (data, response, error) in
+                if let data = data, let image = UIImage(data: data) {
+                    // If the image was loaded successfully, add it to the cache and set it on the cell
+                    cache.setObject(image, forKey: url as NSURL)
+                    DispatchQueue.main.async {
+                        self?.avatarImage.image = image
+                    }
+                }
+            }
+            task.resume()
+            return cache
     }
     
 }

@@ -12,6 +12,9 @@ class ResultsViewController: UIViewController {
     private var apiCaller = APICaller()
     var searchResult: SearchResults?
     var searchQuery: String!
+    var imageCache = NSCache<NSURL, UIImage>()
+
+    
     
     var tableViewResults: [Items] = [Items]()
     
@@ -88,10 +91,12 @@ extension ResultsViewController: UITableViewDelegate, UITableViewDataSource, UIS
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: ResultsTableViewCell.identifier, for: indexPath) as? ResultsTableViewCell else{return UITableViewCell()}
         let model = tableViewResults[indexPath.row]
-        cell.configureCell(with: model)
+        
         cell.backgroundColor = .white
+        imageCache = cell.configureCell(with: model, for: imageCache) // sets the image and returns the cache also
         return cell
-    }
+        }
+
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 65
