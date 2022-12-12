@@ -75,8 +75,8 @@ class MainViewController: UIViewController{
         
         let searchButtonConstraints: [NSLayoutConstraint] = [
             searchButton.topAnchor.constraint(equalTo: searchTextField.bottomAnchor, constant: 10),
-            searchButton.widthAnchor.constraint(equalToConstant: 50),
-            searchButton.heightAnchor.constraint(equalToConstant: 50),
+            searchButton.widthAnchor.constraint(equalToConstant: 80),
+            searchButton.heightAnchor.constraint(equalToConstant: 80),
             searchButton.centerXAnchor.constraint(equalTo: searchTextField.centerXAnchor)
         ]
         NSLayoutConstraint.activate(searchButtonConstraints)
