@@ -124,7 +124,6 @@ extension MainViewController: UITextFieldDelegate{
     func textFieldShouldEndEditing(_ textField: UITextField) -> Bool {
         if let inputValue = textField.text{
             searchQuery = inputValue
-            textField.resignFirstResponder()
             return true
         }
         return false
@@ -141,7 +140,16 @@ extension MainViewController: UITextFieldDelegate{
     
     func textFieldShouldClear(_ textField: UITextField) -> Bool {
         searchQuery = ""
+        searchButtonTapped(for: searchQuery)
         return true
+    }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        if let query = textField.text{
+            searchButtonTapped(for: query)
+            return true
+        }
+        return false
     }
     
     override func viewWillAppear(_ animated: Bool) {

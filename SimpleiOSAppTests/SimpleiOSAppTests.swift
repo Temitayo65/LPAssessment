@@ -39,6 +39,7 @@ final class SimpleiOSAppTests: XCTestCase {
         XCTAssertTrue(apiCaller.getPageCount() == 1, "This value should always be 1 when the resetPageCount() has been called. Check the body of the function and set page count back to 1")
         
         var tableViewResult = [Items]()
+        
         apiCaller.getSearchResults(for: "test"){result in
             switch result{
             case .success(let results):
@@ -47,6 +48,7 @@ final class SimpleiOSAppTests: XCTestCase {
                 break
             }
             XCTAssertTrue(tableViewResult.count == 10, "Only 10 items should be received from network call. Change per_page to 10 if this error shows")
+            XCTAssertEqual(apiCaller.getPageCount(), 2, "On the first call, the page number should have increased to 2 to enable second page loading for scrollView")
         }
         
         

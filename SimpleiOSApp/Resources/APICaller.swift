@@ -27,6 +27,7 @@ class APICaller{
                     let result = try JSONDecoder().decode(SearchResults.self, from: data)
                     completion(.success(result))
                     self.increasePageCount(for: result.total_count)
+                    print("Page count is:", self.pageCount)
                 
                     if pagination{self.isPaginating = false}
                     
